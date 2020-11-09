@@ -1,0 +1,9 @@
+﻿  CNode.cpp
+  DLCNode.cpp
+  DoublyLinkedList.cpp
+  LinkedList.cpp
+  Source.cpp
+  Generating Code...
+C:\Users\tanyo\source\repos\.DataStructS2\DataStruct Week 03\DataStruct Week 03\LinkedList.cpp(68): warning C4715: 'LinkedList::get': not all control paths return a value
+C:\Users\tanyo\source\repos\.DataStructS2\DataStruct Week 03\DataStruct Week 03\DoublyLinkedList.cpp(68): warning C4715: 'DoublyLinkedList::get': not all control paths return a value
+  DataStruct Week 03.vcxproj -> C:\Users\tanyo\source\repos\.DataStructS2\DataStruct Week 03\x64\Debug\DataStruct Week 03.exe
