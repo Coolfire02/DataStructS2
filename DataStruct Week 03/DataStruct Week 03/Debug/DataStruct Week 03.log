@@ -1,0 +1,3 @@
+﻿  LinkedList.cpp
+C:\Users\tanyo\source\repos\DataStruct Week 03\DataStruct Week 03\LinkedList.cpp(68): warning C4715: 'LinkedList::get': not all control paths return a value
+  DataStruct Week 03.vcxproj -> C:\Users\tanyo\source\repos\DataStruct Week 03\Debug\DataStruct Week 03.exe
