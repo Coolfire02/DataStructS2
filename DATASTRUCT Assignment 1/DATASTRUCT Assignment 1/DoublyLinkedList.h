@@ -1,11 +1,17 @@
 #pragma once
-#include "DLCNode.h"
 #include <iostream>
 
 using namespace std;
 
 class DoublyLinkedList
 {
+	struct DLCNode {
+		int data;
+		DLCNode* next;
+		DLCNode* back;
+		DLCNode(int data) : data{ data }, next{ nullptr }, back{ nullptr } {}
+	};
+
 private:
 	int size;
 public:
