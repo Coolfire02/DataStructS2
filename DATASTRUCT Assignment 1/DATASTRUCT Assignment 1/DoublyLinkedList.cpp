@@ -14,12 +14,12 @@ DoublyLinkedList::~DoublyLinkedList() {
 	}
 }
 
-void DoublyLinkedList::addToFront(int data) {
+void DoublyLinkedList::addToFront(char data) {
 	(*this).addNode(0, data);
 }
 
-void DoublyLinkedList::addToBack(int data) {
-	(*this).addNode((*this).size - 1, data);
+void DoublyLinkedList::addToBack(char data) {
+	(*this).addNode( (*this).size , data);
 }
 
 bool DoublyLinkedList::removeFromFront() {
@@ -78,9 +78,9 @@ int DoublyLinkedList::getSize() {
 	return (*this).size;
 }
 
-int DoublyLinkedList::get(int index) {
+char DoublyLinkedList::get(int index) {
 	if (first == nullptr || last == nullptr) {
-		//throw exception list is empty	
+		throw "List is empty!";
 	}
 	else if (index >= (*this).size || index < 0) {
 		//throw exception index out of bounds
@@ -102,10 +102,10 @@ int DoublyLinkedList::get(int index) {
 	}
 }
 
-void DoublyLinkedList::addNode(int index, int data) {
+void DoublyLinkedList::addNode(int index, char data) {
 	newNode = new DLCNode(data);
-	if (index > 0 && index >= this->size)
-		index = (*this).size - 1;
+	if (index > 0 && index > this->size)
+		index = (*this).size;
 
 	if (index == 0) { // Add to front (Always handle front addition)
 		if (first == nullptr) {
@@ -125,7 +125,7 @@ void DoublyLinkedList::addNode(int index, int data) {
 			first = newNode;
 		}
 	}
-	else if (index == (*this).size - 1) { // Add to back (Always handle back addition)
+	else if (index == (*this).size) { // Add to back (Always handle back addition)
 		if (last == nullptr) {
 			first = last = newNode;
 		}
@@ -152,4 +152,14 @@ void DoublyLinkedList::addNode(int index, int data) {
 		newNode->next = current;
 	}
 	(*this).size++;
+}
+
+vector<char> DoublyLinkedList::toVector() {
+	vector<char> a;
+	DLCNode* current = first;
+	while (current != nullptr) {
+		a.push_back(current->data);
+		current = current->next;
+	}
+	return a;
 }

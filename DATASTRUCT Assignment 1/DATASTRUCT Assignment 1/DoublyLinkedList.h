@@ -1,15 +1,16 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 class DoublyLinkedList
 {
 	struct DLCNode {
-		int data;
+		char data;
 		DLCNode* next;
 		DLCNode* back;
-		DLCNode(int data) : data{ data }, next{ nullptr }, back{ nullptr } {}
+		DLCNode(char data) : data{ data }, next{ nullptr }, back{ nullptr } {}
 	};
 
 private:
@@ -21,13 +22,16 @@ public:
 
 	DoublyLinkedList();
 	~DoublyLinkedList();
-	void addToFront(int data);
-	void addToBack(int data);
+
+	vector<char> toVector();
+
+	void addToFront(char data);
+	void addToBack(char data);
 	bool removeFromFront();
 	bool removeFromBack();
 	bool removeNode(int);
-	void addNode(int index, int data);
-	int get(int index);
+	void addNode(int index, char data);
+	char get(int index);
 	int getSize();
 
 };
