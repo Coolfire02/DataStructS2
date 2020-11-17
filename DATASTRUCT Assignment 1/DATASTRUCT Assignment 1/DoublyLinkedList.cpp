@@ -39,12 +39,20 @@ bool DoublyLinkedList::removeNode(int index) {
 				first = nullptr;
 				last = nullptr;
 			}
+			else if ((*this).size == 1) {
+				delete first;
+				first = nullptr;
+				last = nullptr;
+			}
 			// Special case (Last entry) - Can assume > 1 entry, allowing this statement to not be contradicted by the one below
 			else if (index == (*this).size - 1) {
 				DLCNode* prev = last->back;
 				delete last;
 				last = prev;
 				prev->next = nullptr;
+				prev->data = 'E';
+				if ((*this).size == 2)
+					last->data = 'S';
 			}
 			// Special case (First entry)
 			else if (index == 0) {
@@ -52,17 +60,19 @@ bool DoublyLinkedList::removeNode(int index) {
 				delete first;
 				first = next;
 				next->back = nullptr;
+				next->data = 'S';
 			}
 			else {
 				DLCNode* current = first;
 				DLCNode* prev = nullptr;
-				for (int i = 0; i < index; i++) {
+				for (int i = 1; i <= index; i++) {
 					prev = current;
 					current = current->next;
 				}
 				if (prev != nullptr) {
 					prev->next = current->next;
-					current->next->back = prev;
+					if(current->next != nullptr)
+						current->next->back = prev;
 					delete current;
 				}
 			}
@@ -80,13 +90,15 @@ int DoublyLinkedList::getSize() {
 
 char DoublyLinkedList::get(int index) {
 	if (first == nullptr || last == nullptr) {
-		throw "List is empty!";
+		//throw exception
+		throw "Illegal State Exception! List was empty!";
 	}
 	else if (index >= (*this).size || index < 0) {
 		//throw exception index out of bounds
+		throw "Index Out Of Bounds Exception! Tried accessing Index: " + (index);
 	}
-	DLCNode* current = first;
 
+	DLCNode* current = first;
 	if (last == first && index == 0) {
 		if(first != nullptr) //Should never occur but removes warning for dereferencing null pointer
 			return first->data;
@@ -98,7 +110,6 @@ char DoublyLinkedList::get(int index) {
 		}
 		if(current != nullptr)
 			current = current->next;
-
 	}
 }
 
@@ -111,12 +122,13 @@ void DoublyLinkedList::addNode(int index, char data) {
 		if (first == nullptr) {
 			first = newNode;
 			last = newNode;
+			
 		}
 		else {
 			if (first == last) {
 				last = first;
 			}
-			
+			first->data = data;
 			newNode->next = first;
 			first->back = newNode;
 			if (last == nullptr) {
@@ -124,13 +136,16 @@ void DoublyLinkedList::addNode(int index, char data) {
 			}
 			first = newNode;
 		}
+		first->data = 'S';
+		if ((*this).size == 1)
+			last->data = 'E';
 	}
 	else if (index == (*this).size) { // Add to back (Always handle back addition)
 		if (last == nullptr) {
 			first = last = newNode;
 		}
 		else {
-
+			last->data = data;
 			last->next = newNode;
 			newNode->back = last;
 			if (first == nullptr) {
@@ -138,16 +153,19 @@ void DoublyLinkedList::addNode(int index, char data) {
 			}
 			last = newNode;
 		}
+		last->data = 'E';
 	}
 	else { // Add to middle (Always handle middle addition)
 		DLCNode* current = first;
 		DLCNode* prev = nullptr;
-		for (int i = 0; i < index; i++) {
+		for (int i = 1; i <= index; i++) {
 			prev = current;
 			current = current->next;
 		}
 		if(prev != nullptr)
 			prev->next = newNode;
+		if(current != nullptr)
+			current->back = newNode;
 		newNode->back = prev;
 		newNode->next = current;
 	}
@@ -161,5 +179,6 @@ vector<char> DoublyLinkedList::toVector() {
 		a.push_back(current->data);
 		current = current->next;
 	}
+	//a.push_back('N');
 	return a;
 }
