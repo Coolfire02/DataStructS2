@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class DoublyLinkedList
+class CPath
 {
 	struct DLCNode {
 		char data;
@@ -20,8 +20,8 @@ public:
 	DLCNode* last;
 	DLCNode* newNode;
 
-	DoublyLinkedList();
-	~DoublyLinkedList();
+	CPath();
+	~CPath();
 
 	vector<char> toVector();
 

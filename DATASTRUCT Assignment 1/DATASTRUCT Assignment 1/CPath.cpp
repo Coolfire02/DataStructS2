@@ -1,11 +1,11 @@
-#include "DoublyLinkedList.h"
+#include "CPath.h"
 
-DoublyLinkedList::DoublyLinkedList() {
+CPath::CPath() {
 	first = last = newNode = nullptr;
 	size = 0;
 }
 
-DoublyLinkedList::~DoublyLinkedList() {
+CPath::~CPath() {
 	DLCNode* current = first;
 	while (current != nullptr) {
 		DLCNode* toDelete = current;
@@ -14,32 +14,27 @@ DoublyLinkedList::~DoublyLinkedList() {
 	}
 }
 
-void DoublyLinkedList::addToFront(char data) {
+void CPath::addToFront(char data) {
 	(*this).addNode(0, data);
 }
 
-void DoublyLinkedList::addToBack(char data) {
+void CPath::addToBack(char data) {
 	(*this).addNode( (*this).size , data);
 }
 
-bool DoublyLinkedList::removeFromFront() {
+bool CPath::removeFromFront() {
 	return removeNode(0);
 }
 
-bool DoublyLinkedList::removeFromBack() {
+bool CPath::removeFromBack() {
 	return removeNode((*this).size - 1);
 }
 
-bool DoublyLinkedList::removeNode(int index) {
+bool CPath::removeNode(int index) {
 	if (first != nullptr && last != nullptr) {
 		if (index >= 0 && index < (*this).size) {
 			// Special case (Single entry)
 			if (first == last) {
-				delete first;
-				first = nullptr;
-				last = nullptr;
-			}
-			else if ((*this).size == 1) {
 				delete first;
 				first = nullptr;
 				last = nullptr;
@@ -84,11 +79,11 @@ bool DoublyLinkedList::removeNode(int index) {
 	return false;
 }
 
-int DoublyLinkedList::getSize() {
+int CPath::getSize() {
 	return (*this).size;
 }
 
-char DoublyLinkedList::get(int index) {
+char CPath::get(int index) {
 	if (first == nullptr || last == nullptr) {
 		//throw exception
 		throw "Illegal State Exception! List was empty!";
@@ -113,7 +108,7 @@ char DoublyLinkedList::get(int index) {
 	}
 }
 
-void DoublyLinkedList::addNode(int index, char data) {
+void CPath::addNode(int index, char data) {
 	newNode = new DLCNode(data);
 	if (index > 0 && index > this->size)
 		index = (*this).size;
@@ -172,7 +167,7 @@ void DoublyLinkedList::addNode(int index, char data) {
 	(*this).size++;
 }
 
-vector<char> DoublyLinkedList::toVector() {
+vector<char> CPath::toVector() {
 	vector<char> a;
 	DLCNode* current = first;
 	while (current != nullptr) {

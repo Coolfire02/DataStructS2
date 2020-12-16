@@ -54,7 +54,7 @@ int main(void) {
 void printUI(DoublyLinkedList &list, int &cursorIndex) {
 	//Flush
 	gotoxy(0, 0);
-	int row = ceil(list.getSize() / 20.0) * 2 + 6;
+	int row = (int) ceil(list.getSize() / 20.0) * 2 + 6;
 	for (int i = 0; i < row; i++)
 		cout << "                                                   " << endl;
 
@@ -69,7 +69,7 @@ void printUI(DoublyLinkedList &list, int &cursorIndex) {
 		cout << element;
 		if ((index + 1) % 20 == 0 || index == list.getSize() - 1) {
 			cout << endl;
-			int row = floor(index / 20.0) + 1;
+			int row = (int) floor(index / 20.0) + 1;
 			for (int i = 0 + ((row - 1) * 20); i < row * 20; i++) {
 				if (i == cursorIndex)
 					cout << "^";

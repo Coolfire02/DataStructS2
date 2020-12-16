@@ -1,5 +1,5 @@
 ﻿  DoublyLinkedList.cpp
   Main.cpp
-C:\Users\tanyo\DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\Main.cpp(19,3): error C3861: 'gotoxy': identifier not found
   Generating Code...
-C:\Users\tanyo\DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\DoublyLinkedList.cpp(103): warning C4715: 'DoublyLinkedList::get': not all control paths return a value
+C:\Users\tanyo\DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\DoublyLinkedList.cpp(109): warning C4715: 'DoublyLinkedList::get': not all control paths return a value
+  DATASTRUCT Assignment 1.vcxproj -> C:\Users\tanyo\DataStructS2\DATASTRUCT Assignment 1\x64\Debug\DATASTRUCT Assignment 1.exe
