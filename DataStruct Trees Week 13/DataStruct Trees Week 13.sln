@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataStruct Trees Week 13", "DataStruct Trees Week 13\DataStruct Trees Week 13.vcxproj", "{780BF8D6-C680-4F6E-83B1-0FE455A749AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Debug|x64.ActiveCfg = Debug|x64
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Debug|x64.Build.0 = Debug|x64
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Debug|x86.ActiveCfg = Debug|Win32
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Debug|x86.Build.0 = Debug|Win32
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Release|x64.ActiveCfg = Release|x64
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Release|x64.Build.0 = Release|x64
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Release|x86.ActiveCfg = Release|Win32
+		{780BF8D6-C680-4F6E-83B1-0FE455A749AB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1BF8750-38A7-4118-8B5C-1DF43342AC29}
+	EndGlobalSection
+EndGlobal
