@@ -106,7 +106,6 @@ void DoublyLinkedList::addNode(int index, int data) {
 			prev = current;
 			current = current->next;
 		}
-
 		prev->next = newNode;
 		newNode->back = prev;
 		newNode->next = current;
