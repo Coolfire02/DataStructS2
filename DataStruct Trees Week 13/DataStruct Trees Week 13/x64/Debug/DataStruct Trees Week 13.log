@@ -1,0 +1,3 @@
+﻿  CBinaryTree.cpp
+C:\Users\tanyo\source\repos\.DataStructS2\DataStruct Trees Week 13\DataStruct Trees Week 13\CBinaryTree.cpp(119): warning C4715: 'CBinaryTree::remove': not all control paths return a value
+  DataStruct Trees Week 13.vcxproj -> C:\Users\tanyo\source\repos\.DataStructS2\DataStruct Trees Week 13\x64\Debug\DataStruct Trees Week 13.exe

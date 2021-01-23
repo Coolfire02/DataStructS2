@@ -34,8 +34,6 @@ bool CBinaryTree::remove(int data) {
 		}
 	}
 
-	cout << current->getData() << " ?????? " << endl;
-
 	//Case 1 Leaf Node
 	if (current->getLeft() == nullptr && current->getRight() == nullptr) {
 		if (current == root) {
@@ -77,7 +75,6 @@ bool CBinaryTree::remove(int data) {
 
 	//Case 4 (horror More than 1 branch)
 	else {
-		cout << "not reached?" << endl;
 		CNode* bestOfLeft = nullptr, *bestOfRight = nullptr;
 		bestOfLeft = current->getLeft();
 		bestOfRight = current->getRight();
@@ -93,27 +90,18 @@ bool CBinaryTree::remove(int data) {
 			else
 				break;
 		}
-
-		cout << bestOfLeft->getData() << " dddddd" << endl;
-		cout << bestOfRight->getData() << " eeeeeee" << endl;
-		cout << current->getData() << " fffffffff" << endl;
+		CNode* retained = current;
 		if ( (bestOfRight->getData() - current->getData() ) > (bestOfLeft->getData() - current->getData()) ) { //Left is closer
 			int data = bestOfLeft->getData();
-			this->remove(bestOfLeft->getData());
-			cout << current->getData() << "  dfdd" << endl;
-			current->setData(data);
-			
+			this->remove(data);
+			retained->setData(data);
 		}
 		else {
 			int data = bestOfRight->getData();
-			this->remove(bestOfRight->getData());
-			cout << current->getData() << "  dfdd" << endl;
-			current->setData(data);
-			
+			this->remove(data);
+			retained->setData(data);
 		}
 	}
-
-	
 }
 
 

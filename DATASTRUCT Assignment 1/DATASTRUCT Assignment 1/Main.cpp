@@ -1,14 +1,14 @@
 #include <iostream>
 #include <Windows.h>
-#include "DoublyLinkedList.h"
+#include "CPath.h"
 
 using namespace std;
 void gotoxy(int, int);
-void printUI(DoublyLinkedList&, int&);
+void printUI(CPath&, int&);
 
 int main(void) {
 
-	DoublyLinkedList list;
+	CPath list;
 	for (int i = 0; i < 50; i++) {
 		list.addToFront('o');
 	}
@@ -51,7 +51,7 @@ int main(void) {
 	return 0;
 }
 
-void printUI(DoublyLinkedList &list, int &cursorIndex) {
+void printUI(CPath &list, int &cursorIndex) {
 	//Flush
 	gotoxy(0, 0);
 	int row = (int) ceil(list.getSize() / 20.0) * 2 + 6;

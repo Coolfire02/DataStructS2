@@ -1,7 +1,5 @@
-﻿  DoublyLinkedList.cpp
+﻿  CNode.cpp
+  CPath.cpp
   Main.cpp
-C:\Users\tanyo\source\repos\.DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\Main.cpp(57,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\tanyo\source\repos\.DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\Main.cpp(72,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Generating Code...
-C:\Users\tanyo\source\repos\.DataStructS2\DATASTRUCT Assignment 1\DATASTRUCT Assignment 1\DoublyLinkedList.cpp(114): warning C4715: 'DoublyLinkedList::get': not all control paths return a value
   DATASTRUCT Assignment 1.vcxproj -> C:\Users\tanyo\source\repos\.DataStructS2\DATASTRUCT Assignment 1\Debug\DATASTRUCT Assignment 1.exe

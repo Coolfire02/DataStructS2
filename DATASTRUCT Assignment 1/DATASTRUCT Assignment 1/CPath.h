@@ -1,4 +1,5 @@
 #pragma once
+#include "CNode.h"
 #include <iostream>
 #include <vector>
 
@@ -6,19 +7,13 @@ using namespace std;
 
 class CPath
 {
-	struct DLCNode {
-		char data;
-		DLCNode* next;
-		DLCNode* back;
-		DLCNode(char data) : data{ data }, next{ nullptr }, back{ nullptr } {}
-	};
 
 private:
 	int size;
 public:
-	DLCNode* first;
-	DLCNode* last;
-	DLCNode* newNode;
+	CNode* first;
+	CNode* last;
+	CNode* newNode;
 
 	CPath();
 	~CPath();
