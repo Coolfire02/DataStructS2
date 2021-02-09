@@ -10,7 +10,7 @@ CGO::CGO(int ID, CPosition pos) {
 	this->pos = pos;
 }
 
-CGO::~CGO() {
+CGO::~CGO() {	
 	//Intentionally left blank
 }
 

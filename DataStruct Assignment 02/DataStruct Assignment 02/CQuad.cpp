@@ -8,13 +8,12 @@ CQuad::CQuad(QUADTYPE type, CPosition minPos, CPosition maxPos) :
 }
 
 CQuad::~CQuad() {
-	std::cout << "wot" << std::endl;
-	//if (!GOList.empty()) {
-	//	for (auto p : GOList) {
-	//		delete p;
-	//	}
-	//	GOList.clear();
-	//}
+	if (!GOList.empty()) {
+		for (auto p : GOList) {
+			delete p;
+		}
+		GOList.clear();
+	}
 }
 
 int CQuad::getCount() {
@@ -33,10 +32,9 @@ CPosition CQuad::getMaxPos() {
 This function should only be called when you are a the correct CQuad. Finding the correct CQuad should be handled by CGOManager
 */
 void CQuad::addCGO(CGO* cgo) {
-	GO_Count++;
-	if (GOList.size() <= 3) {
+	if (GO_Count++ <= 3) {
 		this->GOList.push_back(cgo);
-		if (GOList.size() == 4) { //Starting splitting
+		if (GO_Count == 4) { //Starting splitting
 
 			for (auto& entry : GOList) {
 				CPosition maxPos, minPos;
@@ -47,31 +45,34 @@ void CQuad::addCGO(CGO* cgo) {
 				int xOffset = xSize % 2;
 				int yOffset = ySize % 2;
 
+				int xMid = minPos.getX() + (xSize / 2);
+				int yMid = minPos.getY() + (ySize / 2);
+
 				//Top Left
-				if (entry->getX() < xSize / 2 && entry->getY() < ySize / 2) {
-					maxPos.setX(xSize / 2);
-					maxPos.setY(ySize / 2);
+				if (entry->getX() < xMid && entry->getY() < yMid) {
+					maxPos.setX(xMid);
+					maxPos.setY(yMid);
 					if (TopL == nullptr)
 						TopL = new CQuad(QUADTYPE::E_TOPL, minPos, maxPos);
 					TopL->addCGO(entry);
 				} //Top Right
-				else if (entry->getX() >= xSize / 2 && entry->getY() < ySize / 2) {
-					minPos.setX(xSize / 2);
-					maxPos.setY(ySize / 2);
+				else if (entry->getX() >= xMid && entry->getY() < yMid) {
+					minPos.setX(xMid);
+					maxPos.setY(yMid);
 					if (TopR == nullptr)
 						TopR = new CQuad(QUADTYPE::E_TOPR, minPos, maxPos);
 					TopR->addCGO(entry);
 				} //Bottom Left
-				else if (entry->getX() < xSize / 2 && entry->getY() >= ySize / 2) {
-					maxPos.setX(xSize / 2);
-					minPos.setY(ySize / 2);
+				else if (entry->getX() < xMid && entry->getY() >= yMid) {
+					maxPos.setX(xMid);
+					minPos.setY(yMid);
 					if (BotL == nullptr)
 						BotL = new CQuad(QUADTYPE::E_BOTL, minPos, maxPos);
 					BotL->addCGO(entry);
 				} //Bottom Right
-				else if (entry->getX() >= xSize / 2 && entry->getY() >= ySize / 2) {
-					minPos.setX(xSize / 2);
-					minPos.setY(ySize / 2);
+				else if (entry->getX() >= xMid && entry->getY() >= yMid) {
+					minPos.setX(xMid);
+					minPos.setY(yMid);
 					if (BotR == nullptr)
 						BotR = new CQuad(QUADTYPE::E_BOTR, minPos, maxPos);
 					BotR->addCGO(entry);

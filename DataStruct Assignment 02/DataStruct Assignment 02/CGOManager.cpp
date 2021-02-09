@@ -15,8 +15,43 @@ CGOManager::CGOManager(int x, int y) {
 }
 
 CGOManager::~CGOManager() { //call to delete since uhfo in source
-	//deletePostOrder(root);
-	this->PrintTree();
+	deletePostOrder(root);
+}
+
+void CGOManager::PrintNearbyGO(int GO_ID) {
+	PrintNearbyGO(root, GO_ID);
+}
+
+int CGOManager::getTotalSize() {
+	return root->getCount();
+}
+
+void CGOManager::PrintNearbyGO(CQuad* quad, int GO_ID) {
+	if (quad != nullptr) {
+		if (quad->getCount() < 4) {
+			std::vector<CGO*> v = quad->getCGOList();
+			for (auto entry : v) {
+				if (entry->getID() == GO_ID) {
+					std::cout << "Nearby GO's ID: ";
+					std::vector<CGO*> cgos = quad->getCGOList();
+					std::vector<CGO*>::iterator iter, end;
+					bool first = true;
+					for (iter = cgos.begin(), end = cgos.end(); iter != end; ++iter) {
+						if ((*iter)->getID() != GO_ID) {
+							std::cout << (first == false ? ", ":"") << (*iter)->getID();
+							first = false;
+						}
+					}
+				}
+			}
+		}
+		else {
+			PrintNearbyGO(quad->getTopL(), GO_ID);
+			PrintNearbyGO(quad->getTopR(), GO_ID);
+			PrintNearbyGO(quad->getBotL(), GO_ID);
+			PrintNearbyGO(quad->getBotR(), GO_ID);
+		}
+	}
 }
 
 void CGOManager::deletePostOrder(CQuad* quad) {
@@ -25,8 +60,7 @@ void CGOManager::deletePostOrder(CQuad* quad) {
 		deletePostOrder(quad->getTopR());
 		deletePostOrder(quad->getBotL());
 		deletePostOrder(quad->getBotR());
-		if(quad != root) //dont forget to remove
-			delete quad;
+		delete quad;
 	}
 }
 
@@ -47,38 +81,37 @@ void CGOManager::addCGO(CGO* cgo) {
 		if (xSize <= 1 || ySize <= 1) break;
 
 		quad->addCGO(cgo); //add to Current Quad since this function will only ++ GO_Count in that quad and not add to it
-
-		int xOffset = xSize % 2;
-		int yOfferset = ySize % 2;
-		
 		CQuad* moveQuad = nullptr;
 
+		int xMid = minPos.getX() + (xSize / 2);
+		int yMid = minPos.getY() + (ySize / 2);
+
 		//Top Left
-		if (cgo->getX() < xSize / 2 && cgo->getY() < ySize / 2) {
-			maxPos.setX(xSize / 2);
-			maxPos.setY(ySize / 2);
+		if (cgo->getX() < xMid && cgo->getY() < yMid) {
+			maxPos.setX(xMid);
+			maxPos.setY(yMid);
 			if (quad->getTopL() == nullptr)
 				quad->setTopL(new CQuad(QUADTYPE::E_TOPL, minPos, maxPos));
 			moveQuad = quad->getTopL();
 
 		} //Top Right
-		else if (cgo->getX() >= xSize / 2 && cgo->getY() < ySize / 2) {
-			minPos.setX(xSize / 2);
-			maxPos.setY(ySize / 2);
+		else if (cgo->getX() >= xMid && cgo->getY() < yMid) {
+			minPos.setX(xMid);
+			maxPos.setY(yMid);
 			if (quad->getTopR() == nullptr)
 				quad->setTopR(new CQuad(QUADTYPE::E_TOPR, minPos, maxPos));
 			moveQuad = quad->getTopR();
 		} //Bottom Left
-		else if (cgo->getX() < xSize / 2 && cgo->getY() >= ySize / 2) {
-			maxPos.setX(xSize / 2);
-			minPos.setY(ySize / 2);
+		else if (cgo->getX() < xMid && cgo->getY() >= yMid) {
+			maxPos.setX(xMid);
+			minPos.setY(yMid);
 			if (quad->getBotL() == nullptr)
 				quad->setBotL(new CQuad(QUADTYPE::E_BOTL, minPos, maxPos));
 			moveQuad = quad->getBotL();
 		} //Bottom Right
-		else if (cgo->getX() >= xSize / 2 && cgo->getY() >= ySize / 2) {
-			minPos.setX(xSize / 2);
-			minPos.setY(ySize / 2);
+		else if (cgo->getX() >= xMid && cgo->getY() >= yMid) {
+			minPos.setX(xMid);
+			minPos.setY(yMid);
 			if (quad->getBotR() == nullptr)
 				quad->setBotR(new CQuad(QUADTYPE::E_BOTR, minPos, maxPos));
 			moveQuad = quad->getBotR();

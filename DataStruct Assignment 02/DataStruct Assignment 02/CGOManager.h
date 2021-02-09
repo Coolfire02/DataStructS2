@@ -6,6 +6,7 @@ class CGOManager
 	CQuad* root;
 	int xSize, ySize;
 
+	void PrintNearbyGO(CQuad*, int GO_ID);
 	void PrintTreeInOrder(CQuad*, int, bool);
 	void deletePostOrder(CQuad*);
 public:
@@ -14,6 +15,7 @@ public:
 	~CGOManager();
 
 	void addCGO(CGO*);
+	int getTotalSize();
 
 	void PrintTree();
 	void PrintNearbyGO(int GO_ID);
